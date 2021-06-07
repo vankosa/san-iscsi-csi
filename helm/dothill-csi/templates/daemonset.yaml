@@ -37,6 +37,7 @@ spec:
             - dothill-node
             - -kubeletpath={{ .Values.kubeletPath }}
             - -bind=unix://{{ .Values.kubeletPath }}/plugins/dothill.csi.enix.io/csi.sock
+            - -chroot=/host
 {{- include "dothill.extraArgs" .Values.node | indent 10 }}
           securityContext:
             privileged: true
