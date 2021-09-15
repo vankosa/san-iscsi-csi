@@ -40,7 +40,7 @@ func getVolumeMapsHostNames(client *dothill.Client, name string) ([]string, *dot
 	if name != "" {
 		name = fmt.Sprintf("\"%s\"", name)
 	}
-	res, status, err := client.Request(fmt.Sprintf("/show/volume-maps/%s", name))
+	res, status, err := client.Request(fmt.Sprintf("/show/maps/%s", name))
 	if err != nil {
 		return []string{}, status, err
 	}
@@ -53,7 +53,7 @@ func getVolumeMapsHostNames(client *dothill.Client, name string) ([]string, *dot
 
 		for _, object := range rootObj.Objects {
 			hostName := object.PropertiesMap["identifier"].Data
-			if object.Name == "host-view" && hostName != "all other hosts" {
+			if object.Name == "host-view" && hostName != "all other initiators" {
 				hostNames = append(hostNames, hostName)
 			}
 		}
